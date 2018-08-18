@@ -14,6 +14,7 @@ class CurrentDirectory: public QObject
 public:
     CurrentDirectory(const std::shared_ptr<DirectoryInfo> directoryInfo, std::unique_ptr<DirectoryController> directoryController);
     Q_INVOKABLE QString getFileName() const;
+    Q_INVOKABLE QString getDirPath() const;
     Q_INVOKABLE void doubleClick(QString fileName);
     Q_INVOKABLE void singleClick();
     Q_INVOKABLE void upButtonClick();

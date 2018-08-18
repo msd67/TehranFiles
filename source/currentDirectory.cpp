@@ -12,11 +12,15 @@ QString CurrentDirectory::getFileName() const
     return m_dirName;
 }
 
+QString CurrentDirectory::getDirPath() const
+{
+    return QString::fromStdString(m_directoryInfo->getPath());
+}
+
 void CurrentDirectory::doubleClick(QString fileName)
 {
     std::string nameOfFile = fileName.toLocal8Bit().constData();
     m_directoryController->doubleClick(nameOfFile);
-    qDebug()<<nameOfFile.c_str();
     showFolders();
 }
 
@@ -28,7 +32,7 @@ void CurrentDirectory::singleClick()
 void CurrentDirectory::upButtonClick()
 {
     m_directoryController->upButtonClick();
-    doubleClick("/");
+    showFolders();
 }
 
 void CurrentDirectory::showFolders()
@@ -38,6 +42,6 @@ void CurrentDirectory::showFolders()
     for(auto& p: dirName){
         m_dirName = p.c_str();
         emit createList();
-        qDebug()<<p.c_str();
     }
+    qDebug()<<dirName.size();
 }

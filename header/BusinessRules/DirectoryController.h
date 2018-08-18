@@ -8,6 +8,7 @@ class DirectoryController
 {
     private:
     std::shared_ptr<DirectoryInfo> m_directoryInfo;
+    void updateFilesDirectories();
 
     public:
     DirectoryController(std::shared_ptr<DirectoryInfo> directoryInfo);

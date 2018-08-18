@@ -5,8 +5,11 @@ import QtQuick.Dialogs 1.1
 
 Item{
     id: root
+    Layout.fillHeight: true
+    Layout.fillWidth: true
 
     property string thisFolderName
+    property bool highlightVisible
 
     signal selected
     signal doubleClicked(string fileName)
@@ -16,7 +19,9 @@ Item{
     }
 
     function rowGen(){
+        highlightVisible = false;
         listModeling.append({nameFolder: thisFolderName});
+        //console.log("===> ", thisFolderName);
     }
     function rmRows(){
         listModeling.clear();
@@ -38,7 +43,8 @@ Item{
 			height: 42
 			z: 2
 			color: "#443333EE"
-			y: directotyList.currentItem.y
+            y: directotyList.currentItem.y
+            visible: highlightVisible
 		}
         highlightFollowsCurrentItem: false
 
@@ -48,6 +54,7 @@ Item{
             onSelected:{
                 root.selected();
                 directotyList.currentIndex = index;
+                highlightVisible = true;
             }
             onDoubleClicked:{
                 root.doubleClicked(fileName);

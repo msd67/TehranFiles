@@ -5,6 +5,11 @@ void DirectoryInfo::setPath(const std::string path)
     m_path = path;
 }
 
+void DirectoryInfo::setParent(const std::string parent)
+{
+    m_parent = parent;
+}
+
 void DirectoryInfo::setFilesDirectories(const std::vector<std::string> filesDirectories)
 {
     m_FilesDirectories.clear();
@@ -24,6 +29,11 @@ void DirectoryInfo::setNumOfFilesDirrectories(const int numOfDirectories)
 std::string DirectoryInfo::getPath() const
 {
     return m_path;
+}
+
+std::string DirectoryInfo::getParent() const
+{
+    return m_parent;
 }
 
 std::vector<std::string> DirectoryInfo::getFilesDirectories() const

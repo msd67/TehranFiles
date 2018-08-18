@@ -12,6 +12,7 @@ Window {
     title: qsTr("Hello World")
 
     property string nameOfFolder
+    property string directoryPath
 
     RowLayout{
         anchors.fill: parent
@@ -39,8 +40,7 @@ Window {
                 Layout.fillWidth: true
                 ColumnLayout{
                     id: rightSide
-                    Layout.fillHeight: true
-                    Layout.fillWidth: true
+                    anchors.fill: parent
                     spacing: 10
                     RowLayout{
                         id: topRow
@@ -56,7 +56,7 @@ Window {
                         }
                         Label{
                             id: currentDirectoryLabel
-                            text: qsTr("/home/masoud/ZZ_Test");
+                            text: directoryPath;
                             Layout.fillWidth: true
                         }
                     }
@@ -77,11 +77,17 @@ Window {
                         target: FileManager
                         onCreateList:{
                             nameOfFolder=FileManager.getFileName();
+                            directoryPath=FileManager.getDirPath();
                             listOfFolders.rowGen();
+                            //console.log("--->", nameOfFolder);
                         }
                         onClearList:{
                             listOfFolders.rmRows();
                         }
+                    }
+                    Component.onCompleted:{
+                        nameOfFolder = "home";
+                        listOfFolders.rowGen();
                     }
                 }
             }
